@@ -67,7 +67,7 @@
 <script setup>
    import { ref,reactive,onMounted,nextTick} from 'vue';
    import * as echarts from 'echarts';
-   import {postInfo} from '@/utils';
+   import {postInfo,getInfo} from '@/utils';
    import { useTransition } from '@vueuse/core';
    import * as XLSX from 'xlsx'; 
    import mapContainer from '@/components/mapContainer.vue';
@@ -134,7 +134,7 @@
    }
 
    const getArticleCategoryStatistics  = async() => {
-    const res = await postInfo('/getArticleCategoryStatistics');
+    const res = await getInfo('/getArticleCategoryStatistics');
     pieList.value = res.data.list;
     articleTotal.value = res.data.list.reduce((acc,item) => acc + item.value,0);
     categoryTotal.value = res.data.list.length;
@@ -223,7 +223,8 @@
         padding:12
       },
       tooltip: {
-        trigger: 'item'
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
       },
       legend: {
         width:20,
@@ -370,11 +371,11 @@
     }
     .chartData{
       width:100%;
-      height:600px;
+      height:500px;
       display:flex;
       margin:12px auto;
       #chartMap{
-        width:100%;
+        width:50%;
         height:100%;
         padding:12px;
         background-color:#ffffff;

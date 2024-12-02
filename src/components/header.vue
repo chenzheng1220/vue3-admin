@@ -11,7 +11,7 @@
         <el-popover
         ref="popoverRef"
         trigger="hover"
-        teleported="false"
+        :teleported=false
         popper-class="dropdown"	
         >
           <p class="item" @click="handleClick">跳转前台</p>
@@ -32,7 +32,7 @@
     const app = getCurrentInstance();
     const pathName = ref('统计分析');
     const globalDate = app.appContext.config.globalProperties.globalData;
-    const popoverRef = ref();
+    const popoverRef = ref(null);
     const accountRef = ref(null);
     
     const handleClick = () => {

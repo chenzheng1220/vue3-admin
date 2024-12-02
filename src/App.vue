@@ -7,7 +7,6 @@
       <h2 v-if="!isMobile" class="title" @click="handleReload">乐记笔记后台</h2>
       <div class="line"></div>
       <el-menu
-      :default-openeds="['6']"
       default-active="/chart"
       class="el-menu-vertical-demo dark-mode" 
       background-color="#545c64"

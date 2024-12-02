@@ -74,7 +74,7 @@
 
 <script setup>
 import {ref,reactive,onMounted,nextTick} from 'vue';
-import {postInfo} from '@/utils';
+import {postInfo,getInfo} from '@/utils';
 import {ElMessage} from 'element-plus';
 const tableData = ref([]);
 const dialogVisible = ref(false);
@@ -127,7 +127,7 @@ const handleDelete = async(index,row) => {
 }
 
 const getTagList = async() => {
- const res = await postInfo('/getTagList');
+ const res = await getInfo('/getTagList');
  tableData.value = res.data.list;
 }
 

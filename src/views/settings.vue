@@ -173,7 +173,7 @@
  
 
  const getSettingsDetail = async() => {
-   const res = await postInfo('/getSettingsDetail');
+   const res = await getInfo('/getSettingsDetail');
    state.ruleForm.name = res.data.data.name;
    state.ruleForm.author = res.data.data.author;
    state.ruleForm.avatar = res.data.data.avatar;
