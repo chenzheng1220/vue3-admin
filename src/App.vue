@@ -52,10 +52,11 @@
         <Header></Header>
       </el-header>
       <el-main :class="isMobile ? 'phoneMain' : ''" >
-        <router-view v-slot="{Component}">
+        <router-view v-slot="{Component,route}">
           <keep-alive>
-            <component :is="Component" />
+            <component :is="Component" v-if="route.meta.keepAlive" :key="route.name" />
           </keep-alive>
+          <component :is="Component" v-if="!route.meta.keepAlive" :key="route.name" />
         </router-view>
       </el-main>
       <el-footer>
