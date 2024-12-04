@@ -123,7 +123,8 @@
  }
  
  const changeCategory = (val) => {
-  state.keyword = val;
+  state.keyword = val || '';
+  console.log(state)
   getArticleList(state);
 
  }
