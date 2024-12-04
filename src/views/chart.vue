@@ -354,13 +354,13 @@
         box-shadow: 0 0 5px rgba(114, 124, 245, .5);
        
       }
-      #chartPie{
-        width:30%;
-      
-      }
       #chartBar{
-        width:70%;
+        width:60%;
         margin-right:20px;
+      }
+      #chartPie{
+        width:40%;
+      
       }
     }
     #chartLine{

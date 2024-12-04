@@ -35,8 +35,15 @@
      <el-table-column min-width='180px' prop="customOrder" label="自定义排序" />
      <el-table-column min-width='180px' prop="releaseTime" label="发布时间" />
 
-     <el-table-column min-width='180px' fixed="right" label="操作">
+     <el-table-column min-width='240px' fixed="right" label="操作">
+
        <template #default="scope">
+        <el-button   
+         type="success"   
+         plain
+         @click="handleView(scope.$index,scope.row)">
+           查看
+         </el-button>
          <el-button   
          type="primary"   
          plain
@@ -87,6 +94,10 @@
  const options = ref([]);
  const addArticle = () => {
   router.push({path:'/addArticle'})
+ }
+
+ const handleView = (index,row) => {
+   window.open(`http://lejibiji.cn/article?id=${row.id}`);
  }
 
  const handleEdit = (index,row) => {
