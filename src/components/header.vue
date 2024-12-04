@@ -40,6 +40,7 @@
     }
 
     router.afterEach((to) => {
+
         let path = to.path.split('/');
         pathName.value = globalDate[path[1]];
     

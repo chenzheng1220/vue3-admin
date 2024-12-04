@@ -15,7 +15,7 @@ const router = createRouter({
       path: '/chart',
       name: 'chart',
       meta:{
-        keepAlive:true
+        keepAlive:false
       },
       component: () => import('../views/chart.vue')
     },

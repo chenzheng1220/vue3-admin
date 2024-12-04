@@ -62,9 +62,8 @@
  
   <script>
        const body = document.querySelector('body');
-       let resizeTimer;
+       let resizeTimer = null;
        function handleResize() {
-       
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
           const width = window.innerWidth;
@@ -73,9 +72,9 @@
           const min = Math.min(width, height);
           body.style.width = max + 'px';
           body.style.height = min + 'px';
-        }, 200);
+        }, 0);
       }
-      window.addEventListener('resize', handleResize());
+      window.addEventListener('resize', handleResize);
 
   </script>
 </html>

@@ -117,7 +117,7 @@
       tag:[],
       articleCover: '',
       content:'',
-      customOrder:'0',
+      customOrder:0,
       releaseTime: '',
     },
     rules:{
@@ -220,7 +220,7 @@ const getCategoryList = async() => {
 }
 
 const getTagList = async() => {
-  const res = await postInfo('/getTagList');
+  const res = await getInfo('/getTagList');
   const data = res.data.list.reduce((acc,item) => [...acc,item.name],[]);
   tagOptions.value = [...new Set(data)];
 

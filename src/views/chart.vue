@@ -167,6 +167,7 @@
     await getLastWeekVisitors();
     await getArticleCategoryStatistics();
     await getLastYearArticleData();
+    await nextTick();
     const myChartLine = echarts.init(document.getElementById('chartLine'));
     const myChartPie = echarts.init(document.getElementById('chartPie'));
     const myChartBar = echarts.init(document.getElementById('chartBar'));

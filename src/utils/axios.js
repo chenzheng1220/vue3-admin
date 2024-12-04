@@ -60,13 +60,6 @@ service.interceptors.request.use(
 
         //router.push({path:'/login'});
       }
-
-      // else if(error.response.data.msg){
-      //   ElMessage({type:"error",message:error.response.data.msg});
-      // }
-      // else{
-      //   ElMessage({type:"error",message:error.response.statusText});
-      // }
       if(isRefreshing){
         return new Promise((resolve,reject) => {
           pendingRequests.push(token => {
@@ -75,6 +68,17 @@ service.interceptors.request.use(
           })
         })
       }
+      if(error.response.status === 403){
+        ElMessage({type:"error",message:error.response.data.msg});
+      }
+
+      // else if(error.response.data.msg){
+      //   
+      // }
+      // else{
+      //   ElMessage({type:"error",message:error.response.statusText});
+      // }
+    
 
      
       
