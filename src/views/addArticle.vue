@@ -85,7 +85,9 @@
       <el-button size="large" style="width:120px;" plain type="primary" @click="submitForm(ruleFormRef)">
         发布文章
       </el-button>
-      <el-button size="large" style="width:120px;" plain type="danger" @click="resetForm(ruleFormRef)">重置</el-button>
+      <el-button size="large" style="width:120px;" plain type="danger" @click="resetForm(ruleFormRef)">
+        重置
+      </el-button>
     </el-form-item>
   
    </el-form>
