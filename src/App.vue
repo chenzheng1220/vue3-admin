@@ -78,7 +78,8 @@
   const isMobile = ref(false);
  
 
-  router.afterEach((to,from) => {
+  router.afterEach((to,from,next) => {
+   
     if(to.path.includes('login')){
       isShowLogin.value = true;
       localStorage.removeItem("token");
@@ -88,8 +89,8 @@
       }else{
         router.push({path:'/login'});
       }
-    
     }
+
   })
 
   const handleReload = () => {

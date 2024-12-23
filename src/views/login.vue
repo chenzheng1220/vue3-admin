@@ -125,15 +125,17 @@
         top: 50%;
         left: 50%;
         transform:translate(-50%,-50%);
+        backdrop-filter: blur(12px);
+        background-color:hsl(0deg 0% 100% / 20%);
         box-shadow: 0 2px 8px 0 #ffffff;
         padding:30px;
-        animation:changeShadow 3s linear infinite;
+        animation:changeShadow 2s ease-in-out infinite;
         @keyframes changeShadow {
             0%,100%{
-                box-shadow: 0 0 10px #ffffff;
+                box-shadow: 0 0 12px #ffffff;
             }
             50%{
-                box-shadow: 0 0 10px transparent;
+                box-shadow: 0 0 12px transparent;
             }
         }
         .logo{
