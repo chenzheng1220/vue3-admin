@@ -36,7 +36,7 @@
     const accountRef = ref(null);
     
     const handleClick = () => {
-        window.location.href = 'http://lejibiji.cn';
+        window.open('http://lejibiji.cn');
     }
 
     router.afterEach((to) => {
