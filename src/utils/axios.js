@@ -1,5 +1,4 @@
 import axios from 'axios';
-import config from './config';
 import router from '@/router';
 import { ElMessage } from 'element-plus';
 const service = axios.create({
