@@ -15,7 +15,7 @@
             <el-table-column min-width='180px' label="发布时间" prop="date" />
            <el-table-column min-width='180px' fixed="right" label="操作">
                 <template #default="scope">
-                    <el-button plain type="primary" @click="handleClick(scope.row.id)">
+                    <el-button plain type="success" @click="handleClick(scope.row.id)">
                         查看
                     </el-button>
                     <el-popconfirm

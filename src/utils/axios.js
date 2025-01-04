@@ -8,7 +8,7 @@ const service = axios.create({
         Accept: "application/json",
         "Content-Type": "application/json;charset=utf-8",
       },
-      timeout: 3000, // 请求超时时间
+    timeout: 3000, // 请求超时时间
 
 })
 

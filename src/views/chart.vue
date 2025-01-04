@@ -50,8 +50,21 @@
       <el-table-column min-width='120px' prop="screen" label="设备分辨率" />
       <el-table-column min-width='120px' prop="count" label="访问次数" />
       <el-table-column min-width='120px' prop="visitTime" label="最新访问时间" />
-
+      <el-table-column min-width="120px" label="操作日志" fixed="right">
+        <template #default="scope">
+          <el-button   
+          type="success"   
+          plain
+          @click="handleView(scope.$index,scope.row)">
+            查看
+          </el-button>
+          </template>
+      </el-table-column>
     </el-table>
+
+    <trackDialog :trackList="trackList" :isShow="isShow" @close="isShow = false"></trackDialog>
+
+
   
     <div class="page">
       <el-pagination 
@@ -71,10 +84,13 @@
    import { useTransition } from '@vueuse/core';
    import * as XLSX from 'xlsx'; 
    import mapContainer from '@/components/mapContainer.vue';
+   import trackDialog from '@/components/trackDialog.vue';
    const articleTotal = ref(0);
    const categoryTotal = ref(0);
    const pvTotal = ref(0);
    const uvTotal = ref(0);
+   const trackList = ref([]);
+   const isShow = ref(false);
    const state = reactive({
       pageNumber:1,
       pageSize:12
@@ -103,6 +119,11 @@
     const newUV = useTransition(uvTotal, {
       duration: 1500,
     })
+    const handleView = async(index,row) => {
+      const res = await postInfo('/getTrack',{ip:row.ip});
+      trackList.value = res.data.list;
+      isShow.value = true ;
+    }
     
    
    
