@@ -64,8 +64,6 @@
 
     <trackDialog :trackList="trackList" :isShow="isShow" @close="isShow = false"></trackDialog>
 
-
-  
     <div class="page">
       <el-pagination 
         background 

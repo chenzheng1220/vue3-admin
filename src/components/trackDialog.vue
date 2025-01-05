@@ -1,12 +1,15 @@
 <template>
     <el-dialog title="操作日志" v-model="dialogVisible"  @close="handleClose" width="70%" draggable append-to-body>
-        <el-table :data="trackList" border stripe style="width:100%;">
-            <el-table-column min-width='120px' label="event" prop="event"/>
-            <el-table-column min-width='120px' label="type" prop="type"/>
-            <el-table-column min-width='120px' label="target" prop="target"/>
-            <el-table-column min-width='120px' label="stayTime" prop="stayTime"/>
-            <el-table-column min-width='120px' label="triggerTime" prop="triggerTime"/>
-        </el-table>
+        <el-scrollbar height="60vh">
+            <el-table :data="trackList" border stripe style="width:100%;">
+                <el-table-column min-width='120px' label="event" prop="event"/>
+                <el-table-column min-width='120px' label="type" prop="type"/>
+                <el-table-column min-width='120px' label="target" prop="target"/>
+                <el-table-column min-width='120px' label="stayTime" prop="stayTime"/>
+                <el-table-column min-width='120px' label="triggerTime" prop="triggerTime"/>
+            </el-table>
+        </el-scrollbar>
+      
     </el-dialog>
 </template>
 
