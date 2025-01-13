@@ -190,6 +190,7 @@
     const myChartLine = echarts.init(document.getElementById('chartLine'));
     const myChartPie = echarts.init(document.getElementById('chartPie'));
     const myChartBar = echarts.init(document.getElementById('chartBar'));
+    const myChartDevice = echarts.init(document.getElementById('chartDevice'));
 
     let optionLine = {
       title: {
@@ -320,15 +321,48 @@
         }
       ]
     };
+    let deviceOptions = {
+      title: {
+        text: '设备类型统计',
+        left: 'center'
+      },
+      tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
+      },
+      legend: {
+        orient: 'vertical',
+        left: 'left'
+      },
+      series: [
+        {
+          name: '设备类型',
+          type: 'pie',
+          radius: '50%',
+          data: [
+            { value: 1048, name: 'Search Engine' },
+            { value: 735, name: 'Direct' }
+          ],
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
+            }
+          }
+        }
+      ]
+    };
     myChartLine.setOption(optionLine);
     myChartPie.setOption(optionPie);
     myChartBar.setOption(optionBar);
+    myChartDevice.setOption(deviceOptions);
   
     window.addEventListener('resize',() => {
       myChartLine.resize();
       myChartPie.resize();
       myChartBar.resize();
-      myChartBar.resize();
+      myChartDevice.resize();
     })
   })
 
@@ -394,11 +428,17 @@
       height:500px;
       display:flex;
       margin:12px auto;
-      #chartMap{
-        width:50%;
+      >div{
         height:100%;
         padding:12px;
         background-color:#ffffff;
+      }
+      #chartMap{
+        width:60%;
+        margin-right:20px;
+      }
+      #chartDevice{
+        width:40%;
       }
     }
     .tableTitle{
