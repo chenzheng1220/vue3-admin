@@ -34,7 +34,7 @@
     import {ref,reactive, onMounted} from 'vue';
     import {useRouter} from 'vue-router';
     import {postInfo} from '@/utils';
-    import md5 from 'js-md5';
+    import {SHA256} from 'crypto-js';
     import {ElMessage} from 'element-plus';
     const router = useRouter();
     const ruleFormRef = ref(null);
@@ -62,7 +62,7 @@
                 let url = '/login';
                 let data = {
                     username:state.ruleForm.username,
-                    password:md5(state.ruleForm.password)
+                    password:SHA256(state.ruleForm.password).toString()
                 };
                 const res = await postInfo(url,data);
                 if(res.data.code === 200){

@@ -67,9 +67,13 @@ service.interceptors.request.use(
           })
         })
       }
-      if(error.response.status === 403){
+      if(error.response.status === 403 || error.response.status === 404 || error.response.status === 500 ){
         ElMessage({type:"error",message:error.response.data.msg});
       }
+      if(error.response.status === 409){
+        ElMessage({type:"warning",message:error.response.data.msg});
+      }
+     
 
       // else if(error.response.data.msg){
       //   

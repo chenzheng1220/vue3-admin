@@ -37,7 +37,7 @@
     import { reactive, ref,onMounted} from 'vue'  
     import {postInfo} from '@/utils';
     import {ElMessage} from 'element-plus';
-    import { md5 } from 'js-md5';
+    import {SHA256} from 'crypto-js';
     const ruleFormRef = ref(null);
     const dialogVisible = ref(false);
    
@@ -67,7 +67,7 @@
         if(state.ruleForm.password === state.ruleForm.confirmPassword){
             const res = await postInfo('/updatePassword',{
               username:state.ruleForm.username,
-              password:md5(state.ruleForm.password)
+              password:SHA256(state.ruleForm.password).toString()
             });
             if(res.data.code === 200){
                 ElMessage({type:'success',message:res.data.msg});
