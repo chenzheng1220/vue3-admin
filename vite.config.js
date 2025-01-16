@@ -60,7 +60,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:8081', // 目标服务器地址
+        target: 'http://lejibiji.cn:8081', // 目标服务器地址
         changeOrigin: true,             // 是否改变源地址
         rewrite: (path) => path.replace(/^\/api/, '') // 重写路径
       }

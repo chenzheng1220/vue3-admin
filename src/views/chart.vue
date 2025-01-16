@@ -88,6 +88,7 @@
    const pvTotal = ref(0);
    const uvTotal = ref(0);
    const trackList = ref([]);
+   const deviceList = ref([]);
    const isShow = ref(false);
    const state = reactive({
       pageNumber:1,
@@ -166,6 +167,11 @@
     barList.dataList = data.reduce((acc,item) => [...acc,item.value],[]);
    }
 
+   const getDeviceStatistics = async() => {
+    const res = await getInfo('/getDeviceStatistics');
+    deviceList.value = res.data.list;
+  }
+
    const exportToExcel = async() => {
     const res = await postInfo('/getAllVisitors');
     const list = res.data.list;
@@ -181,11 +187,14 @@
     XLSX.writeFile(workbook, '博客访问详情.xlsx');
    }
 
+  
+
   onMounted(async() => {
     await getVisitorsList();
     await getLastWeekVisitors();
     await getArticleCategoryStatistics();
     await getLastYearArticleData();
+    await getDeviceStatistics();
     await nextTick();
     const myChartLine = echarts.init(document.getElementById('chartLine'));
     const myChartPie = echarts.init(document.getElementById('chartPie'));
@@ -339,10 +348,7 @@
           name: '设备类型',
           type: 'pie',
           radius: '50%',
-          data: [
-            { value: 1048, name: 'Search Engine' },
-            { value: 735, name: 'Direct' }
-          ],
+          data: deviceList.value,
           emphasis: {
             itemStyle: {
               shadowBlur: 10,

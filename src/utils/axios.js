@@ -41,7 +41,7 @@ service.interceptors.request.use(
         isRefreshing = true;
         try{
           const refreshToken = localStorage.getItem('refreshToken');
-          const res = await axios.post('/refreshToken',{token:refreshToken});
+          const res = await axios.post('/api/refreshToken',{refreshToken:refreshToken});
           const {token} = res.data;
           localStorage.setItem('token',token);
           //重试原始请求
@@ -56,8 +56,6 @@ service.interceptors.request.use(
         }finally{
           isRefreshing = false;
         }
-
-        //router.push({path:'/login'});
       }
       if(isRefreshing){
         return new Promise((resolve,reject) => {
@@ -73,18 +71,6 @@ service.interceptors.request.use(
       if(error.response.status === 409){
         ElMessage({type:"warning",message:error.response.data.msg});
       }
-     
-
-      // else if(error.response.data.msg){
-      //   
-      // }
-      // else{
-      //   ElMessage({type:"error",message:error.response.statusText});
-      // }
-    
-
-     
-      
       return Promise.reject(error);
     }
   );

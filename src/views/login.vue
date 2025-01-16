@@ -67,6 +67,7 @@
                 const res = await postInfo(url,data);
                 if(res.data.code === 200){
                     localStorage.setItem('token',res.data.token);
+                    localStorage.setItem('refreshToken',res.data.refreshToken);
                     router.push({path:'/chart'});
                     ElMessage({type:'success',message:res.data.msg});
                 }
