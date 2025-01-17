@@ -347,7 +347,7 @@
         {
           name: '设备类型',
           type: 'pie',
-          radius: '50%',
+          radius: '60%',
           data: deviceList.value,
           emphasis: {
             itemStyle: {
