@@ -83,6 +83,7 @@
     if(to.path.includes('login')){
       isShowLogin.value = true;
       localStorage.removeItem("token");
+      localStorage.removeItem("refreshToken");
     }else{
       if(localStorage.getItem("token")){
         isShowLogin.value = false;

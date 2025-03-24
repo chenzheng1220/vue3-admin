@@ -37,7 +37,7 @@ service.interceptors.request.use(
     async(error) => {
       const originalRequest = error.config;
       // 响应数据失败的处理逻辑
-      if(error.response.status === 401 && !isRefreshing){
+      if(error.response.status === 401 && !isRefreshing){ 
         isRefreshing = true;
         try{
           const refreshToken = localStorage.getItem('refreshToken');
@@ -47,7 +47,7 @@ service.interceptors.request.use(
           //重试原始请求
           pendingRequests.forEach(callback => callback(token));
           pendingRequests = [];
-          return service(originalRequest)
+          return service(originalRequest);
         }catch(error){
           localStorage.removeItem('token');
           localStorage.removeItem('refreshToken');
@@ -57,6 +57,7 @@ service.interceptors.request.use(
           isRefreshing = false;
         }
       }
+      
       if(isRefreshing){
         return new Promise((resolve,reject) => {
           pendingRequests.push(token => {

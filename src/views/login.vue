@@ -1,5 +1,5 @@
 <template>
-    <canvas id="q"></canvas>
+   
 
     <div class="login">
         <div class="logo">
@@ -28,6 +28,7 @@
         </div>
 
     </div>
+    <canvas id="q"></canvas>
 </template>
 
 <script setup>
@@ -80,18 +81,18 @@
     }
 
     const codeRain = () => {
-        const s = window.screen;
-        const w = (q.width = Math.max(s.width,s.height));
-        const h = (q.height = Math.min(s.width,s.height));
-        const ctx = q.getContext("2d");
+    const s = window.screen;
+    const w = (q.width = Math.max(s.width, s.height));
+    const h = (q.height = Math.min(s.width, s.height));
+    const ctx = q.getContext("2d");
 
-        const p = Array(Math.floor(w / 10) + 1).fill(0);
+    const p = Array(Math.floor(w / 10) + 1).fill(0);
 
-        const random = (items) => items[Math.floor(Math.random() * items.length)];
+    const random = (items) => items[Math.floor(Math.random() * items.length)];
 
-        const hex = "0123456789ABCDEF".split("");
+    const hex = "0123456789ABCDEF".split("");
 
-        setInterval(() => {
+    const draw = () => {
         ctx.fillStyle = "rgba(0,0,0,.05)";
         ctx.fillRect(0, 0, w, h);
         ctx.fillStyle = "#0f0";
@@ -99,13 +100,16 @@
             ctx.fillText(random(hex), i * 10, v);
             p[i] = v >= h || v > 50 + 10000 * Math.random() ? 0 : v + 10;
         });
-        }, 1000 / 30);
-    }
+        requestAnimationFrame(draw);
+    };
+
+    draw();
+}
 
 
-    onMounted(async() => {
-     codeRain();
-    })
+onMounted(async() => {
+    codeRain();
+})
    
     
 
@@ -120,6 +124,10 @@
         bottom:0;
         // transform-origin: 0 0;
         // transform: rotateZ(90deg) translateY(-100%);
+        will-change: transform;
+        width:100%;
+        height:100vh;
+        background-color:#000000;
     }
     .login{
         position: absolute;
@@ -131,6 +139,7 @@
         box-shadow: 0 2px 8px 0 #ffffff;
         padding:30px;
         animation:changeShadow 2s ease-in-out infinite;
+        z-index:999;
         @keyframes changeShadow {
             0%,100%{
                 box-shadow: 0 0 12px #ffffff;

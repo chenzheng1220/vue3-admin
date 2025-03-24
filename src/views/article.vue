@@ -17,6 +17,7 @@
       >
         <el-option
           v-for="item in options"
+          :key="item"
           :value="item"
         />
   </el-select>
@@ -73,7 +74,7 @@
    <div class="page">
     <el-pagination 
       background 
-      layout="prev, pager, next" 
+      layout="prev, pager, next,total" 
       :current-page="state.pageNumber" 
       :page-size="state.pageSize" 
       @current-change="handleCurrentChange"

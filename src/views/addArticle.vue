@@ -32,7 +32,7 @@
             :on-error="handleAvatarError"
             :before-upload="beforeAvatarUpload"
             >
-            <img v-if="state.ruleForm.articleCover" :src="state.ruleForm.articleCover" class="avatar" />
+            <img v-if="state.ruleForm.articleCover" :src="state.ruleForm.articleCover" class="avatar" alt="articleCover" />
             <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
         </el-upload>
     </el-form-item>

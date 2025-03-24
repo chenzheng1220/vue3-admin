@@ -3,6 +3,7 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import VueDevTools from 'vite-plugin-vue-devtools'
+import { visualizer } from "rollup-plugin-visualizer";
 //npm install -D unplugin-vue-components unplugin-auto-import 使用插件自动引入ElementPlus
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
@@ -29,6 +30,13 @@ export default defineConfig({
       deleteOriginFile: false //压缩后是否删除源文件
     }),
     VueDevTools(),
+    visualizer({
+      open: true, // 自动打开浏览器
+      template: "treemap", // 图形类型：sunburst|treemap|network
+      filename: "stats.html", // 输出文件名
+      gzipSize: true, // 显示gzip后大小
+      brotliSize: true // 显示brotli压缩后大小
+    })
   ],
   build: {
     target: 'esnext',
@@ -50,6 +58,11 @@ export default defineConfig({
          drop_debugger: true,
        },
      },
+  },
+  optimizeDeps: {
+    esbuildOptions: {
+      plugins: []
+    }
   },
   resolve: {
     alias: {
