@@ -108,7 +108,7 @@
 
 
 onMounted(async() => {
-    codeRain();
+   codeRain();
 })
    
     
