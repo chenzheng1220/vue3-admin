@@ -52,12 +52,14 @@
         <Header></Header>
       </el-header>
       <el-main :class="isMobile ? 'phoneMain' : ''" >
-        <router-view v-slot="{Component,route}">
-          <keep-alive>
-            <component :is="Component" v-if="route.meta.keepAlive" :key="route.name" />
-          </keep-alive>
-          <component :is="Component" v-if="!route.meta.keepAlive" :key="route.name" />
-        </router-view>
+        <el-config-provider :locale="zhCn">
+          <router-view v-slot="{Component,route}">
+            <keep-alive>
+              <component :is="Component" v-if="route.meta.keepAlive" :key="route.name" />
+            </keep-alive>
+            <component :is="Component" v-if="!route.meta.keepAlive" :key="route.name" />
+          </router-view>
+        </el-config-provider>
       </el-main>
       <el-footer>
         <Footer></Footer>
@@ -74,6 +76,7 @@
   import Footer from './components/footer.vue';
   import Login from './views/login.vue';
   import { useUserStore } from '@/stores/userStore';
+  import zhCn from 'element-plus/es/locale/lang/zh-cn'
   const loginState = useUserStore();
 
   const isShowLogin = ref(true);
@@ -83,22 +86,15 @@
  
 
   router.beforeEach((to,from,next) => {
-    console.log('loginState',loginState.isLogin.value)
-    if(to.path === '/login'){
+    if(loginState.isLogin){
+      isShowLogin.value = false;
+      next();
+    }else{
       isShowLogin.value = true;
       localStorage.removeItem("token");
       localStorage.removeItem("refreshToken");
-      next();
-    }else{
-      if(localStorage.getItem("token") ){
-        isShowLogin.value = false;
-        next();
-      }else{
-        router.push({path:'/login'});
-      
-      }
     }
-
+   
   })
 
   const handleReload = () => {

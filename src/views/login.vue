@@ -39,7 +39,7 @@
     import {ElMessage} from 'element-plus';
     import { useUserStore } from '@/stores/userStore';
     const loginState = useUserStore();
-    console.log('loginState',loginState)
+    
     const router = useRouter();
     const ruleFormRef = ref(null);
     const state = reactive({
