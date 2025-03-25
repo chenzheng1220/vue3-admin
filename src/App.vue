@@ -1,6 +1,6 @@
 <template>
   <el-container v-if="isShowLogin">
-    <router-view />
+    <Login />
   </el-container>
   <el-container v-else>
     <el-aside :style="{width:isMobile ? '64px':'200px'}">
@@ -72,23 +72,30 @@
   import {useRouter} from 'vue-router';
   import Header from './components/header.vue';
   import Footer from './components/footer.vue';
+  import Login from './views/login.vue';
+  import { useUserStore } from '@/stores/userStore';
+  const loginState = useUserStore();
+
   const isShowLogin = ref(true);
   const router = useRouter();
   const isCollapse = ref(false);
   const isMobile = ref(false);
  
 
-  router.afterEach((to,from,next) => {
-   
-    if(to.path.includes('login')){
+  router.beforeEach((to,from,next) => {
+    console.log('loginState',loginState.isLogin.value)
+    if(to.path === '/login'){
       isShowLogin.value = true;
       localStorage.removeItem("token");
       localStorage.removeItem("refreshToken");
+      next();
     }else{
-      if(localStorage.getItem("token")){
+      if(localStorage.getItem("token") ){
         isShowLogin.value = false;
+        next();
       }else{
         router.push({path:'/login'});
+      
       }
     }
 

@@ -37,6 +37,9 @@
     import {postInfo} from '@/utils';
     import {SHA256} from 'crypto-js';
     import {ElMessage} from 'element-plus';
+    import { useUserStore } from '@/stores/userStore';
+    const loginState = useUserStore();
+    console.log('loginState',loginState)
     const router = useRouter();
     const ruleFormRef = ref(null);
     const state = reactive({
@@ -69,6 +72,7 @@
                 if(res.data.code === 200){
                     localStorage.setItem('token',res.data.token);
                     localStorage.setItem('refreshToken',res.data.refreshToken);
+                    loginState.updateLogin(true);
                     router.push({path:'/chart'});
                     ElMessage({type:'success',message:res.data.msg});
                 }
