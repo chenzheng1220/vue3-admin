@@ -1,5 +1,5 @@
 <template>
-    <el-dialog title="操作日志" v-model="dialogVisible"  @close="handleClose" width="70%" draggable append-to-body>
+    <el-dialog title="近一周操作日志" v-model="dialogVisible"  @close="handleClose" width="70%" draggable append-to-body>
         <el-scrollbar height="60vh">
             <el-table :data="trackList" border stripe style="width:100%;">
                 <el-table-column min-width='120px' label="event" prop="event"/>
