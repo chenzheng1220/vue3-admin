@@ -28,13 +28,14 @@
     import {ref,reactive,onMounted,getCurrentInstance,nextTick} from 'vue';
     import {useRouter} from 'vue-router';
     import accountDialog from './accountDialog.vue';
+    import {useUserStore} from '@/stores/userStore'
     const router = useRouter();
     const app = getCurrentInstance();
     const pathName = ref('统计分析');
     const globalDate = app.appContext.config.globalProperties.globalData;
     const popoverRef = ref(null);
     const accountRef = ref(null);
-    
+    const loginState = useUserStore();
     const handleClick = () => {
         window.open('http://lejibiji.cn');
     }
@@ -50,7 +51,8 @@
         accountRef.value.open();
     }
     const exit = () => {
-        router.push({path:'/login'})
+        loginState.updateLogin(false);
+        router.push({path:'/'})
     }
     onMounted(async() => {
       

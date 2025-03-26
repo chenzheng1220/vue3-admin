@@ -86,13 +86,19 @@
  
 
   router.beforeEach((to,from,next) => {
-    if(loginState.isLogin){
-      isShowLogin.value = false;
-      next();
-    }else{
+    if(to.path === '/login'){
       isShowLogin.value = true;
       localStorage.removeItem("token");
       localStorage.removeItem("refreshToken");
+      next();
+    }else{
+      if(loginState.isLogin){
+        isShowLogin.value = false;
+        next();
+      }else{
+        next({path:'/login'})
+      }
+    
     }
    
   })
