@@ -40,17 +40,16 @@ export default defineConfig({
   ],
   build: {
     target: 'esnext',
+    minify:'terser',
+    //拆包策略
     rollupOptions: {
       output: {
-        manualChunks(id) {
-          if (id.includes('node_modules')) {
-            return id.toString().split('node_modules/')[1].split('/')[0].toString();
-          }
-        }
+      
       }
     },
+  
      //默认是esbuild,但这里需要改成terser，并且想使用terser的话，需提前安装，命令为npm add -D terser
-     minify:'terser',
+    
      terserOptions: {
        compress: {
          //生产环境时移除console,debugger
@@ -71,6 +70,7 @@ export default defineConfig({
   },
   base:'/vue3-admin/',
   server: {
+    open:true,
     proxy: {
       '/api': {
         target: 'http://lejibiji.cn:8081', // 目标服务器地址
