@@ -9,7 +9,7 @@
        添加标签
      </el-button>
    </div>
-   <el-table :data="tableData" border stripe style="width: 100%">
+   <el-table :data="tableData" border stripe style="width: 100%" v-loading="loading">
     <el-table-column prop="name" label="标签名称" />
     <el-table-column prop="createTime" label="创建时间" />
   
@@ -75,14 +75,14 @@
 <script setup>
 import {ref,reactive,onMounted,nextTick} from 'vue';
 import {postInfo,getInfo} from '@/utils';
-import {ElMessage} from 'element-plus';
+import {ElMessage, vLoading} from 'element-plus';
 const tableData = ref([]);
 const dialogVisible = ref(false);
 const inputValue = ref('')
 const dynamicTags = ref([]);
 const inputVisible = ref(false)
 const inputRef = ref(null);
-
+const loading = ref(false);
 const handleClose = (tag) => {
   dynamicTags.value.splice(dynamicTags.value.indexOf(tag), 1)
 }
@@ -127,7 +127,9 @@ const handleDelete = async(index,row) => {
 }
 
 const getTagList = async() => {
+  loading.value = true;
  const res = await getInfo('/getTagList');
+ loading.value = false;
  tableData.value = res.data.list;
 }
 
@@ -148,6 +150,10 @@ onMounted(async() => {
        background-color:#ffffff;
      }
    }
+   .el-pagination.is-background .btn-next, .el-pagination.is-background .btn-prev, .el-pagination.is-background .el-pager li {
+      background-color: #ffffff;
+      margin: 0 4px;
+    }
    @media screen and (max-width:768px){
     .tag{
       width:100%;

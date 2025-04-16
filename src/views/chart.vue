@@ -1,5 +1,5 @@
 <template>
-  <div class="chart">
+  <div class="chart" v-loading="loading">
     <div class="data">
       <div class="item">
         <p>发布文章</p>
@@ -90,6 +90,7 @@
    const trackList = ref([]);
    const deviceList = ref([]);
    const isShow = ref(false);
+   const loading = ref(false);
    const state = reactive({
       pageNumber:1,
       pageSize:12
@@ -168,7 +169,9 @@
    }
 
    const getDeviceStatistics = async() => {
+    loading.value = true;
     const res = await getInfo('/getDeviceStatistics');
+    loading.value = false;
     deviceList.value = res.data.list;
   }
 
@@ -464,6 +467,10 @@
       margin:50px auto;
     }
   }
+  .el-pagination.is-background .btn-next, .el-pagination.is-background .btn-prev, .el-pagination.is-background .el-pager li {
+      background-color: #ffffff;
+      margin: 0 4px;
+    }
   @media screen and (max-width:768px){
     .chart{
       width:100%;

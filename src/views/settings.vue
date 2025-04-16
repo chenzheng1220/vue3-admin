@@ -1,5 +1,5 @@
 <template>
-   <div class="settings">
+   <div class="settings" v-loading="loading">
     <el-form
     :model="state.ruleForm"
     :rules="state.rules"
@@ -73,6 +73,7 @@
    const ruleFormRef = ref(null);
    const editor = ref('');
    const token = localStorage.getItem("token") || '';
+   const loading = ref(false);
    const state = reactive({
      ruleForm:{
        name: '',
@@ -173,7 +174,9 @@
  
 
  const getSettingsDetail = async() => {
+   loading.value = true;
    const res = await getInfo('/getSettingsDetail');
+   loading.value = false;
    state.ruleForm.name = res.data.data.name;
    state.ruleForm.author = res.data.data.author;
    state.ruleForm.avatar = res.data.data.avatar;

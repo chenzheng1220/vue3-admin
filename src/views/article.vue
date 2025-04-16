@@ -23,7 +23,7 @@
         />
   </el-select>
     </div>
-    <el-table :data="tableData" border stripe style="width: 100%">
+    <el-table :data="tableData" border stripe style="width: 100%" v-loading="loading">
      <el-table-column min-width='180px' show-overflow-tooltip prop="title" label="标题" />
      <el-table-column min-width='180px' show-overflow-tooltip prop="introduction" label="摘要" />
      <el-table-column min-width='180px' label="缩略图" >
@@ -94,6 +94,7 @@
  const state = reactive({keyword:'',pageNumber:1,pageSize:12});
  const total = ref(0);
  const options = ref([]);
+ const loading = ref(false);
  const addArticle = () => {
   router.push({path:'/addArticle'})
  }
@@ -119,7 +120,9 @@
  }
 
  const getArticleList = async(data) => {
+  loading.value = true;
   const res = await postInfo('/getArticleList',data);
+  loading.value = false;
   tableData.value = res.data.list;
   total.value = res.data.totalNum;
  }
@@ -164,6 +167,10 @@
         justify-content: center;
         margin:50px auto;
       }
+    }
+    .el-pagination.is-background .btn-next, .el-pagination.is-background .btn-prev, .el-pagination.is-background .el-pager li {
+      background-color: #ffffff;
+      margin: 0 4px;
     }
     @media screen and (max-width:768px){
       .article{

@@ -77,28 +77,25 @@
   import Login from './views/login.vue';
   import { useUserStore } from '@/stores/userStore';
   import zhCn from 'element-plus/es/locale/lang/zh-cn'
+  import useSystem from './hooks/useSystem'
   const loginState = useUserStore();
 
   const isShowLogin = ref(true);
   const router = useRouter();
   const isCollapse = ref(false);
-  const isMobile = ref(false);
+  const isMobile = ref(useSystem().isMobile);
  
 
   router.beforeEach((to,from,next) => {
-    if(to.path === '/login'){
+    //debugger;
+    if(loginState.isLogin){
+      isShowLogin.value = false;
+      next();
+    }else{
       isShowLogin.value = true;
       localStorage.removeItem("token");
       localStorage.removeItem("refreshToken");
       next();
-    }else{
-      if(loginState.isLogin){
-        isShowLogin.value = false;
-        next();
-      }else{
-        next({path:'/login'})
-      }
-    
     }
    
   })
@@ -108,12 +105,13 @@
   }
 
   const handleResize = () => {
-    isMobile.value =  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    isCollapse.value = isMobile.value;
+    isMobile.value = useSystem().isMobile;
+    isCollapse.value = useSystem().isMobile;
   }
   
   onMounted(() => {
-    window.addEventListener('resize',handleResize());
+    handleResize();
+    window.addEventListener('resize',handleResize);
    
   })
 
@@ -123,7 +121,7 @@
   
   <style lang="scss">
     $menuBgColor:#222832;
-    $borderColor:#EBEDF0;
+    $borderColor:#eef0fc;
     .el-container{
       width:100%;
       height:100%;
