@@ -35,7 +35,7 @@
 </template>
 
 <script setup>
-import {ref,reactive,onMounted,nextTick} from 'vue';
+import {ref,nextTick} from 'vue';
 import {postInfo} from '@/utils';
 const dialogVisible = ref(false);
 const props = defineProps({

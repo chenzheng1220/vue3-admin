@@ -64,7 +64,7 @@
    
    <script setup>
  
-   import { reactive, ref,onMounted, nextTick } from 'vue'  
+   import { reactive, ref,onMounted } from 'vue'  
    import {postInfo,getInfo} from '@/utils';
    import axios from 'axios';
    import {ElMessage} from 'element-plus';
