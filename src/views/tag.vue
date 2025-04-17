@@ -73,7 +73,7 @@
 </template>
 
 <script setup>
-import {ref,reactive,onMounted,nextTick} from 'vue';
+import {ref,onMounted,nextTick} from 'vue';
 import {postInfo,getInfo} from '@/utils';
 import {ElMessage, vLoading} from 'element-plus';
 const tableData = ref([]);

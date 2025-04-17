@@ -125,7 +125,7 @@
     })
   );
   const imageUrls = res.map((item) => item.data.data);
-  callback(imageUrls);
+    callback(imageUrls);
   }
  
    const handleAvatarSuccess = (response,uploadFile) => {

@@ -87,7 +87,6 @@
  
 
   router.beforeEach((to,from,next) => {
-    //debugger;
     if(loginState.isLogin){
       isShowLogin.value = false;
       next();

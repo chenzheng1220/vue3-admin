@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import { watch,watchEffect,ref,toRefs } from 'vue';
+import {watchEffect,ref } from 'vue';
 const dialogVisible = ref(false);
 const props = defineProps({
     trackList:Array,

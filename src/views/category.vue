@@ -47,7 +47,7 @@
   </template>
   
   <script setup>
-  import {ref,reactive,onMounted} from 'vue';
+  import {ref,onMounted} from 'vue';
   import {postInfo} from '@/utils';
   import {ElMessage} from 'element-plus';
   import categoryDialog from '@/components/categoryDialog.vue';

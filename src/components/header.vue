@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-    import {ref,reactive,onMounted,getCurrentInstance,nextTick} from 'vue';
+    import {ref,onMounted,getCurrentInstance} from 'vue';
     import {useRouter} from 'vue-router';
     import accountDialog from './accountDialog.vue';
     import {useUserStore} from '@/stores/userStore'
