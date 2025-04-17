@@ -28,7 +28,7 @@
    </el-dialog>
  </template>
    
-   <script setup>
+   <script setup lang="ts">
  
    import { reactive, ref,onMounted, nextTick } from 'vue'  
    import {postInfo} from '@/utils';

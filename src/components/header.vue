@@ -24,7 +24,7 @@
     <accountDialog ref="accountRef"  />
 </template>
 
-<script setup>
+<script setup lang="ts">
     import {ref,onMounted,getCurrentInstance} from 'vue';
     import {useRouter} from 'vue-router';
     import accountDialog from './accountDialog.vue';

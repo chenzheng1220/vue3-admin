@@ -32,7 +32,7 @@
     </el-dialog>
   </template>
     
-    <script setup>
+    <script setup lang="ts">
   
     import { reactive, ref,onMounted} from 'vue'  
     import {postInfo} from '@/utils';

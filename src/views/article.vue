@@ -84,15 +84,28 @@
    </div>
  </template>
  
- <script setup>
+ <script setup lang="ts">
  import {ref,reactive,onMounted} from 'vue';
  import {useRouter} from 'vue-router';
  import {postInfo} from '@/utils';
  import {ElMessage} from 'element-plus';
  const router = useRouter();
- const tableData = ref([]);
+ interface TableRow{
+  id:number,
+  title:string,
+  introduction:string,
+  articleCover:string,
+  category:string,
+  customOrder:number,
+  content:string,
+  releaseTime:string,
+  tag:string[],
+  view:number
+
+ }
+ const tableData = ref<TableRow[]>([]);
  const state = reactive({keyword:'',pageNumber:1,pageSize:12});
- const total = ref(0);
+ const total = ref<number>(0);
  const options = ref([]);
  const loading = ref(false);
  const addArticle = () => {

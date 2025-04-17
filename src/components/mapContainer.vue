@@ -3,7 +3,7 @@
 
     </div>
 </template>
-<script setup>
+<script setup lang="ts">
 
 import { onMounted, onUnmounted } from "vue";
 import AMapLoader from "@amap/amap-jsapi-loader";

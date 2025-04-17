@@ -75,7 +75,7 @@
 
 </template>
 
-<script setup>
+<script setup lang="ts">
    import { ref,reactive,onMounted,nextTick} from 'vue';
    import * as echarts from 'echarts';
    import {postInfo,getInfo} from '@/utils';

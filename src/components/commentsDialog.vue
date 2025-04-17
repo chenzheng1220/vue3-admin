@@ -34,7 +34,7 @@
     </el-dialog>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import {ref,nextTick} from 'vue';
 import {postInfo} from '@/utils';
 const dialogVisible = ref(false);

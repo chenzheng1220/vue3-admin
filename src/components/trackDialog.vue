@@ -13,7 +13,7 @@
     </el-dialog>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import {watchEffect,ref } from 'vue';
 const dialogVisible = ref(false);
 const props = defineProps({

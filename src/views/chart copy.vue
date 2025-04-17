@@ -6,7 +6,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
    import {reactive,onMounted, onUnmounted} from 'vue';
    import * as echarts from 'echarts';
 

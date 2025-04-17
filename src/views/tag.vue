@@ -72,7 +72,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import {ref,onMounted,nextTick} from 'vue';
 import {postInfo,getInfo} from '@/utils';
 import {ElMessage, vLoading} from 'element-plus';

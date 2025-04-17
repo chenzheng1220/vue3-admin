@@ -94,19 +94,19 @@
   </div>
 </template>
   
-  <script setup>
+  <script setup lang="ts">
 
   import { reactive, ref,onMounted } from 'vue'  
   import {postInfo,getInfo} from '@/utils';
-  import {ElMessage} from 'element-plus';
+  import {ElMessage,FormInstance } from 'element-plus';
   import {useRoute,useRouter} from 'vue-router';
   import { MdEditor } from 'md-editor-v3';
   import 'md-editor-v3/lib/style.css';
   import axios from 'axios';
   const router = useRouter();
   const route = useRoute();
-  const editor = ref('');
-  const ruleFormRef = ref(null);
+  const editor = ref<string>('');
+  const ruleFormRef = ref<FormInstance>();
   const token = localStorage.getItem("token") || '';
   const {id} = route.query;
   const categoryOptions = ref([]);
