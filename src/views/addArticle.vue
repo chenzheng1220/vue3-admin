@@ -105,7 +105,7 @@
   import axios from 'axios';
   const router = useRouter();
   const route = useRoute();
-  const editor = ref<string>('');
+  const editor = ref('');
   const ruleFormRef = ref<FormInstance>();
   const token = localStorage.getItem("token") || '';
   const {id} = route.query;
