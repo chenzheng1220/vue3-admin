@@ -39,7 +39,6 @@
     import {ElMessage} from 'element-plus';
     import { useUserStore } from '@/stores/userStore';
     const loginState = useUserStore();
-    
     const router = useRouter();
     const ruleFormRef = ref(null);
     const state = reactive({
@@ -85,6 +84,7 @@
     }
 
     const codeRain = () => {
+    const q = document.getElementById('q');
     const s = window.screen;
     const w = (q.width = Math.max(s.width, s.height));
     const h = (q.height = Math.min(s.width, s.height));

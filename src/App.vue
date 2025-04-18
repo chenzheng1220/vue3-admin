@@ -7,7 +7,7 @@
       <h2 v-if="!isMobile" class="title" @click="handleReload">乐记笔记后台</h2>
       <div class="line"></div>
       <el-menu
-      default-active="/chart"
+      :default-active="current"
       class="el-menu-vertical-demo dark-mode" 
       background-color="#545c64"
       text-color="#fff"
@@ -70,8 +70,8 @@
   </template>
   
   <script setup lang="ts">
-  import {ref,onMounted} from 'vue';
-  import {useRouter} from 'vue-router';
+  import {ref,onMounted,computed} from 'vue';
+  import {useRouter,useRoute} from 'vue-router';
   import Header from './components/header.vue';
   import Footer from './components/footer.vue';
   import Login from './views/login.vue';
@@ -79,13 +79,13 @@
   import zhCn from 'element-plus/es/locale/lang/zh-cn'
   import useSystem from './hooks/useSystem'
   const loginState = useUserStore();
-
   const isShowLogin = ref(true);
   const router = useRouter();
+  const route = useRoute();
   const isCollapse = ref(false);
   const isMobile = ref(useSystem().isMobile);
+  const current = computed(() => route.path);
  
-
   router.beforeEach((to,from,next) => {
     if(loginState.isLogin){
       isShowLogin.value = false;

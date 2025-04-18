@@ -11,6 +11,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 //npm i vite-plugin-compression -D 安装插件
 import viteCompression from 'vite-plugin-compression'
 // https://vitejs.dev/config/
+import autoprefixer from 'autoprefixer'
 export default defineConfig({
   plugins: [
     vue(),
@@ -58,11 +59,6 @@ export default defineConfig({
        },
      },
   },
-  optimizeDeps: {
-    esbuildOptions: {
-      plugins: []
-    }
-  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
@@ -82,6 +78,13 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: { api: 'modern-compiler' },
+    },
+    postcss: {
+      plugins: [
+        autoprefixer({
+          overrideBrowserslist: ['> 1%', 'last 2 versions','not dead']
+        })
+      ]
     }
   }
 })
