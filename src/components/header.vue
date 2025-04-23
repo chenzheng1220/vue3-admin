@@ -25,14 +25,13 @@
 </template>
 
 <script setup lang="ts">
-    import {ref,onMounted,getCurrentInstance} from 'vue';
-    import {useRouter} from 'vue-router';
+    import {ref} from 'vue';
+    import {useRouter,useRoute,onBeforeRouteUpdate} from 'vue-router';
     import accountDialog from './accountDialog.vue';
     import {useUserStore} from '@/stores/userStore'
     const router = useRouter();
-    const app = getCurrentInstance();
-    const pathName = ref('统计分析');
-    const globalDate = app.appContext.config.globalProperties.globalData;
+    const route = useRoute();
+    const pathName = ref(route.meta.title);
     const popoverRef = ref(null);
     const accountRef = ref(null);
     const loginState = useUserStore();
@@ -40,24 +39,22 @@
         window.open('http://lejibiji.cn');
     }
 
-    router.afterEach((to) => {
-
-        let path = to.path.split('/');
-        pathName.value = globalDate[path[1]];
-    
-    })
+   
 
     const updatePwd = () => {
         accountRef.value.open();
     }
     const exit = () => {
         loginState.updateLogin(false);
-        router.push({path:'/'})
+        router.push({path:'/login'})
     }
-    onMounted(async() => {
-      
-        
+
+    onBeforeRouteUpdate((to,from,next) => {
+        pathName.value = to.meta.title;
+        next();
     })
+
+
 
 
 </script>

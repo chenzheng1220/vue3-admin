@@ -109,7 +109,7 @@
  const options = ref([]);
  const loading = ref(false);
  const addArticle = () => {
-  router.push({path:'/addArticle'})
+  router.push({path:'/home/addArticle'})
  }
 
  const handleView = (index,row) => {
@@ -118,7 +118,7 @@
 
  const handleEdit = (index,row) => {
 
-   router.push({path:'/addArticle',query:{id:row.id}});
+   router.push({path:'/home/addArticle',query:{id:row.id}});
 
  }
 

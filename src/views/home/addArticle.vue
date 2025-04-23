@@ -200,7 +200,7 @@
       const res = await postInfo(url,state.ruleForm);
       if(res.data.code === 200){
         ElMessage({type:'success',message:res.data.msg});
-        router.push({path:'/article'});
+        router.push({path:'/home/article'});
       }
     
     } else {

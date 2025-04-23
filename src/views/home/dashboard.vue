@@ -1,5 +1,5 @@
 <template>
-  <div class="chart" v-loading="loading">
+  <div class="dashboard" v-loading="loading">
     <div class="data">
       <div class="item">
         <p>发布文章</p>
@@ -380,7 +380,7 @@
 </script>
 
 <style lang="scss">
-  .chart{
+  .dashboard{
     width:100%;
     .data{
       width:100%;

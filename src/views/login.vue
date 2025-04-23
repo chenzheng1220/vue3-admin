@@ -72,7 +72,7 @@
                     localStorage.setItem('token',res.data.token);
                     localStorage.setItem('refreshToken',res.data.refreshToken);
                     loginState.updateLogin(true);
-                    router.push({path:'/chart'});
+                    router.push({path:'/home/dashboard'});
                     ElMessage({type:'success',message:res.data.msg});
                 }
             }else{

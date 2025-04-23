@@ -8,18 +8,6 @@ import App from './App.vue'
 import router from './router'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 const app = createApp(App);
-app.config.globalProperties.globalData = {
-  'chart':'统计分析',
-  'article':'文章管理',
-  'addArticle':'文章管理',
-  'category':'分类管理',
-  'tag':'标签管理',
-  'comments':'评论管理',
-  'project':'项目管理',
-  'resource':'资源管理',
-  'account':'修改密码',
-  'settings':'博客设置'
-}
 
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
     app.component(key, component)
