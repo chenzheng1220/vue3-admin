@@ -42,7 +42,7 @@
       <h2>博客访问详情</h2>
       <el-button type="primary" @click="exportToExcel">导出execl</el-button>
     </div>
-    <el-table :data="tableData" stripe border table-layout="auto" style="width: 100%">
+    <el-table :data="tableData"  border table-layout="auto"  style="width: 100%">
       <el-table-column min-width='120px' fixed prop="ip" label="访客IP"  />
       <el-table-column min-width='120px' prop="city" label="所在城市"  />
       <el-table-column min-width='120px' prop="platform" label="操作系统平台" />
@@ -471,6 +471,7 @@
       background-color: #ffffff;
       margin: 0 4px;
     }
+ 
   @media screen and (max-width:768px){
     .chart{
       width:100%;

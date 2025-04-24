@@ -9,7 +9,7 @@
        添加标签
      </el-button>
    </div>
-   <el-table :data="tableData" border stripe style="width: 100%" v-loading="loading">
+   <el-table :data="tableData" border  style="width: 100%" v-loading="loading">
     <el-table-column prop="name" label="标签名称" />
     <el-table-column prop="createTime" label="创建时间" />
   

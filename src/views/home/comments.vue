@@ -1,6 +1,6 @@
 <template>
     <div class="comments">
-         <el-table :data="tableData" border stripe style="width:100%;" v-loading="loading">
+         <el-table :data="tableData" border  style="width:100%;" v-loading="loading">
             <!-- <el-table-column min-width='180px' label="文章ID" prop="articleId"/> -->
             <el-table-column min-width='180px' label="昵称" prop="nickname"/>
             <el-table-column min-width='180px' show-overflow-tooltip label="评论内容" prop="content" />

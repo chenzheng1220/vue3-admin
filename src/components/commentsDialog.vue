@@ -69,7 +69,7 @@ const open = () => {
 defineExpose({open});
 </script>
 
-<style lang="scss">
+<style lang="scss"  scoped>
     .el-textarea__inner{
         min-height:100px!important;
     }

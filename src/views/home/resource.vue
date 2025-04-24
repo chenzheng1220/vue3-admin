@@ -24,7 +24,7 @@
         </el-select>
      
      </div>
-     <el-table :data="tableData" border stripe style="width: 100%" v-loading="loading">
+     <el-table :data="tableData" border  style="width: 100%" v-loading="loading">
       <el-table-column min-width="180px" prop="type" label="资源类型" />
       <el-table-column min-width="180px" prop="name" label="资源名称" />
       <el-table-column min-width="180px" prop="customOrder" label="自定义排序" />

@@ -23,7 +23,7 @@
         />
   </el-select>
     </div>
-    <el-table :data="tableData" border stripe style="width: 100%" v-loading="loading">
+    <el-table :data="tableData" border  style="width: 100%" v-loading="loading">
      <el-table-column min-width='180px' show-overflow-tooltip prop="title" label="标题" />
      <el-table-column min-width='180px' show-overflow-tooltip prop="introduction" label="摘要" />
      <el-table-column min-width='180px' label="缩略图" >

@@ -9,7 +9,7 @@
          新增分类
        </el-button>
      </div>
-     <el-table :data="tableData" border stripe style="width: 100%" v-loading="loading">
+     <el-table :data="tableData" border  style="width: 100%" v-loading="loading">
       <el-table-column min-width='180px' prop="name" label="分类名称" />
       <el-table-column min-width='180px' prop="customOrder" label="自定义排序" />
       <el-table-column min-width='180px' prop="createTime" label="创建时间" /> 

@@ -8,7 +8,7 @@
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .footer{
         height:100%;
         text-align:center;
