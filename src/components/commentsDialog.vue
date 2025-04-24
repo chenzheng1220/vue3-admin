@@ -41,7 +41,17 @@ const dialogVisible = ref(false);
 const props = defineProps({
     id:Number
 })
-const ruleForm = ref({});
+const ruleForm = ref({
+    articleId:'',
+    ip:'',
+    city:'',
+    avatar: '',
+    nickname: '',
+    email: '',
+    content: '',
+    state: false,
+    date: ''
+});
 const open = () => {
   nextTick(async() => {
     if(props.id){

@@ -113,6 +113,7 @@
   const tagOptions = ref([]);
   const state = reactive({
     ruleForm:{
+      id:null,
       title: '',
       introduction: '',
       category: '',
@@ -195,7 +196,7 @@
     ruleFormRef.value.validate(async(valid, fields) => {
     if (valid) {   
       state.ruleForm.content = editor.value;
-      state.ruleForm.id = id ? parseInt(id) : '';
+      state.ruleForm.id = parseInt(id);
       let url = id ? '/updateArticle':'/addArticle';
       const res = await postInfo(url,state.ruleForm);
       if(res.data.code === 200){

@@ -49,11 +49,11 @@
         rules:{
             username:[
                 { required: true, message: '账号不能为空', trigger: 'blur' },
-                { min: 6,max:24, message: '账号长度至少六位', trigger: 'blur' },
+                { min: 6,max:12, message: '账号长度应为6~12位', trigger: 'blur' },
             ],
             password:[
                 {required:true,message:'密码不能为空',trigger:'blur'},
-                { min: 6,max:24,message: '密码长度至少六位', trigger: 'blur' },
+                { min: 6,max:12,message: '密码长度应为6~12位', trigger: 'blur' },
             ]
         }
     })

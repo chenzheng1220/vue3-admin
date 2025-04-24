@@ -3,10 +3,10 @@ import { defineStore } from 'pinia'
 
 export const useUserStore = defineStore('login', () => {
   const isLogin = ref(false);
-  isLogin.value = localStorage.getItem('isLogin') || false;
+  isLogin.value = localStorage.getItem('isLogin') === 'true';
   watchEffect(() => {
     if(isLogin.value){
-      localStorage.setItem('isLogin',isLogin.value);
+      localStorage.setItem('isLogin', isLogin.value.toString());
     }else{
       localStorage.removeItem('isLogin');
     }

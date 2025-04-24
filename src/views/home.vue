@@ -2,23 +2,25 @@
     <el-container >
         <Aside></Aside>
         <el-container>
-        <el-header>
-            <Header></Header>
-        </el-header>
-        <el-main :class="isMobile ? 'phoneMain' : ''" >
-            <router-view v-slot="{Component,route}">
-                <keep-alive>
-                <component :is="Component" v-if="route.meta.keepAlive" :key="route.name" />
-                </keep-alive>
-                <component :is="Component" v-if="!route.meta.keepAlive" :key="route.name" />
-            </router-view>
-        
-        </el-main>
-        <el-footer>
-            <Footer></Footer>
-        </el-footer>
+            <el-header>
+                <Header></Header>
+            </el-header>
+            <el-main :class="isMobile ? 'phoneMain' : ''" >
+                <router-view v-slot="{Component,route}">
+                    <template v-if="route.meta.keepAlive">
+                        <keep-alive>
+                            <component :is="Component" v-if="route.meta.keepAlive" :key="route.fullPath" />
+                        </keep-alive>
+                    </template>
+                    <template v-else>
+                        <component :is="Component" v-if="!route.meta.keepAlive" :key="route.fullPath" />
+                    </template>
+                </router-view>
+            </el-main>
+            <el-footer>
+                <Footer></Footer>
+            </el-footer>
         </el-container>
-    
   </el-container>
 </template>
 <script setup lang="ts">

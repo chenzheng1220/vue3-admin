@@ -3,7 +3,7 @@ import Home from '@/views/home.vue';
 import {useUserStore} from '@/stores/userStore'
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('/vue3-admin/'),
   routes: [
     {
       path:'/',
