@@ -76,7 +76,7 @@
 </template>
 
 <script setup lang="ts">
-   import { ref,reactive,onMounted,nextTick} from 'vue';
+   import { ref,reactive,onMounted,onUnmounted,nextTick} from 'vue';
    import * as echarts from 'echarts';
    import {postInfo,getInfo} from '@/utils';
    import { useTransition } from '@vueuse/core';
@@ -120,6 +120,7 @@
       duration: 1500,
     })
     const handleView = async(index,row) => {
+     
       const res = await postInfo('/getTrack',{ip:row.ip});
       trackList.value = res.data.list;
       isShow.value = true ;
@@ -368,6 +369,14 @@
     myChartDevice.setOption(deviceOptions);
   
     window.addEventListener('resize',() => {
+      myChartLine.resize();
+      myChartPie.resize();
+      myChartBar.resize();
+      myChartDevice.resize();
+    })
+  })
+  onUnmounted(() => {
+    window.removeEventListener('resize',() => {
       myChartLine.resize();
       myChartPie.resize();
       myChartBar.resize();
