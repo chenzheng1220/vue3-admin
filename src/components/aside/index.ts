@@ -1,0 +1,46 @@
+
+const menuData = [
+    {
+        id:0,
+        title:'统计分析',
+        index:'/home/dashboard',
+        icon:'Histogram'
+    },
+    {
+        id:1,
+        title:'文章管理',
+        index:'/home/article',
+        icon:'Document'
+    },
+    {
+        id:2,
+        title:'分类管理',
+        index:'/home/category',
+        icon:'FolderOpened'
+    },
+    {
+        id:3,
+        title:'标签管理',
+        index:'/home/tag',
+        icon:'CollectionTag'
+    },
+    {
+        id:4,
+        title:'评论管理',
+        index:'/home/comments',
+        icon:'ChatDotSquare'
+    },
+    {
+        id:5,
+        title:'资源管理',
+        index:'/home/resource',
+        icon:'collection'
+    },
+    {
+        id:6,
+        title:'博客设置',
+        index:'/home/settings',
+        icon:'Setting'
+    }
+]
+export default menuData;

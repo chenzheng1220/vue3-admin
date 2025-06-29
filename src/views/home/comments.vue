@@ -1,6 +1,6 @@
 <template>
     <div class="comments">
-         <el-table :data="tableData" border stripe style="width:100%;">
+         <el-table :data="tableData" border  style="width:100%;" v-loading="loading">
             <!-- <el-table-column min-width='180px' label="文章ID" prop="articleId"/> -->
             <el-table-column min-width='180px' label="昵称" prop="nickname"/>
             <el-table-column min-width='180px' show-overflow-tooltip label="评论内容" prop="content" />
@@ -52,7 +52,7 @@
     </div>
  </template>
  
- <script setup>
+ <script setup lang="ts">
  import {ref,reactive,onMounted} from 'vue';
  import {postInfo} from '@/utils';
 import { ElMessage } from 'element-plus';
@@ -65,6 +65,7 @@ const total = ref(0);
  const id = ref(null);
  let tableData = ref([]);
  const commentsDialogRef = ref(null);
+ const loading = ref(false);
   const getCommentsList = async() => {
     const res = await postInfo('/getCommentsList',state);
     const list = res.data.list.map(item => {
@@ -124,6 +125,10 @@ const total = ref(0);
             justify-content:center;
             margin:50px auto;
         }
+    }
+    .el-pagination.is-background .btn-next, .el-pagination.is-background .btn-prev, .el-pagination.is-background .el-pager li {
+      background-color: #ffffff;
+      margin: 0 4px;
     }
     @media screen and (max-width:768px){
       .comments{

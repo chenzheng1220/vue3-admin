@@ -34,14 +34,24 @@
     </el-dialog>
 </template>
 
-<script setup>
-import {ref,reactive,onMounted,nextTick} from 'vue';
+<script setup lang="ts">
+import {ref,nextTick} from 'vue';
 import {postInfo} from '@/utils';
 const dialogVisible = ref(false);
 const props = defineProps({
     id:Number
 })
-const ruleForm = ref({});
+const ruleForm = ref({
+    articleId:'',
+    ip:'',
+    city:'',
+    avatar: '',
+    nickname: '',
+    email: '',
+    content: '',
+    state: false,
+    date: ''
+});
 const open = () => {
   nextTick(async() => {
     if(props.id){
@@ -59,7 +69,7 @@ const open = () => {
 defineExpose({open});
 </script>
 
-<style lang="scss">
+<style lang="scss"  scoped>
     .el-textarea__inner{
         min-height:100px!important;
     }

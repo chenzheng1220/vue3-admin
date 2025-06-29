@@ -3,7 +3,7 @@
 
     </div>
 </template>
-<script setup>
+<script setup lang="ts">
 
 import { onMounted, onUnmounted } from "vue";
 import AMapLoader from "@amap/amap-jsapi-loader";
@@ -126,7 +126,7 @@ onUnmounted(() => {
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     #mapBox{
         width: 100%;
         height: 100%;

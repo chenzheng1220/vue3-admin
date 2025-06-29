@@ -4,11 +4,11 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .footer{
         height:100%;
         text-align:center;

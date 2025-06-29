@@ -1,7 +1,7 @@
 <template>
-    <el-dialog title="操作日志" v-model="dialogVisible"  @close="handleClose" width="70%" draggable append-to-body>
+    <el-dialog title="近一周操作日志" v-model="dialogVisible"  @close="handleClose" width="70%" draggable append-to-body>
         <el-scrollbar height="60vh">
-            <el-table :data="trackList" border stripe style="width:100%;">
+            <el-table :data="trackList" border  style="width:100%;">
                 <el-table-column min-width='120px' label="event" prop="event"/>
                 <el-table-column min-width='120px' label="type" prop="type"/>
                 <el-table-column min-width='120px' label="target" prop="target"/>
@@ -13,8 +13,8 @@
     </el-dialog>
 </template>
 
-<script setup>
-import { watch,watchEffect,ref,toRefs } from 'vue';
+<script setup lang="ts">
+import {watchEffect,ref } from 'vue';
 const dialogVisible = ref(false);
 const props = defineProps({
     trackList:Array,
@@ -35,7 +35,7 @@ const handleClose = () =>  {
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .el-textarea__inner{
         min-height:100px!important;
     }

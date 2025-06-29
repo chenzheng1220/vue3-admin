@@ -6,8 +6,8 @@
     </div>
 </template>
 
-<script setup>
-   import { ref,reactive,onMounted, onUnmounted,nextTick} from 'vue';
+<script setup lang="ts">
+   import {reactive,onMounted, onUnmounted} from 'vue';
    import * as echarts from 'echarts';
 
 // 基于准备好的dom，初始化echarts实例

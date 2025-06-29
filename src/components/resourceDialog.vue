@@ -46,16 +46,12 @@
    </el-dialog>
  </template>
    
-   <script setup>
+   <script setup lang="ts">
  
-   import { reactive, ref,onMounted, nextTick,computed } from 'vue'  
-   import {postInfo,getInfo} from '@/utils';
+   import { reactive, ref,onMounted, nextTick } from 'vue'  
+   import {postInfo} from '@/utils';
    import {ElMessage} from 'element-plus';
-   import {useRoute,useRouter} from 'vue-router';
-   const router = useRouter();
-   const route = useRoute();
    const ruleFormRef = ref(null);
-   const token = ref(localStorage.getItem("token"));
    const dialogVisible = ref(false);
    const props = defineProps({
     type:String,
@@ -137,7 +133,7 @@
    
    </script>
  
-   <style lang="scss">
+   <style lang="scss" scoped>
    
    </style>
    

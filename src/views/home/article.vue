@@ -23,7 +23,7 @@
         />
   </el-select>
     </div>
-    <el-table :data="tableData" border stripe style="width: 100%">
+    <el-table :data="tableData" border  style="width: 100%" v-loading="loading">
      <el-table-column min-width='180px' show-overflow-tooltip prop="title" label="标题" />
      <el-table-column min-width='180px' show-overflow-tooltip prop="introduction" label="摘要" />
      <el-table-column min-width='180px' label="缩略图" >
@@ -84,18 +84,32 @@
    </div>
  </template>
  
- <script setup>
+ <script setup lang="ts">
  import {ref,reactive,onMounted} from 'vue';
  import {useRouter} from 'vue-router';
  import {postInfo} from '@/utils';
  import {ElMessage} from 'element-plus';
  const router = useRouter();
- const tableData = ref([]);
+ interface TableRow{
+  id:number,
+  title:string,
+  introduction:string,
+  articleCover:string,
+  category:string,
+  customOrder:number,
+  content:string,
+  releaseTime:string,
+  tag:string[],
+  view:number
+
+ }
+ const tableData = ref<TableRow[]>([]);
  const state = reactive({keyword:'',pageNumber:1,pageSize:12});
- const total = ref(0);
+ const total = ref<number>(0);
  const options = ref([]);
+ const loading = ref(false);
  const addArticle = () => {
-  router.push({path:'/addArticle'})
+  router.push({path:'/home/addArticle'})
  }
 
  const handleView = (index,row) => {
@@ -104,7 +118,7 @@
 
  const handleEdit = (index,row) => {
 
-   router.push({path:'/addArticle',query:{id:row.id}});
+   router.push({path:'/home/addArticle',query:{id:row.id}});
 
  }
 
@@ -119,7 +133,9 @@
  }
 
  const getArticleList = async(data) => {
+  loading.value = true;
   const res = await postInfo('/getArticleList',data);
+  loading.value = false;
   tableData.value = res.data.list;
   total.value = res.data.totalNum;
  }
@@ -164,6 +180,10 @@
         justify-content: center;
         margin:50px auto;
       }
+    }
+    .el-pagination.is-background .btn-next, .el-pagination.is-background .btn-prev, .el-pagination.is-background .el-pager li {
+      background-color: #ffffff;
+      margin: 0 4px;
     }
     @media screen and (max-width:768px){
       .article{

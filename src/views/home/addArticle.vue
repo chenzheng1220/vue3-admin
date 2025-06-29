@@ -94,11 +94,11 @@
   </div>
 </template>
   
-  <script setup>
+  <script setup lang="ts">
 
   import { reactive, ref,onMounted } from 'vue'  
   import {postInfo,getInfo} from '@/utils';
-  import {ElMessage} from 'element-plus';
+  import {ElMessage,FormInstance } from 'element-plus';
   import {useRoute,useRouter} from 'vue-router';
   import { MdEditor } from 'md-editor-v3';
   import 'md-editor-v3/lib/style.css';
@@ -106,13 +106,14 @@
   const router = useRouter();
   const route = useRoute();
   const editor = ref('');
-  const ruleFormRef = ref(null);
+  const ruleFormRef = ref<FormInstance>();
   const token = localStorage.getItem("token") || '';
   const {id} = route.query;
   const categoryOptions = ref([]);
   const tagOptions = ref([]);
   const state = reactive({
     ruleForm:{
+      id:null,
       title: '',
       introduction: '',
       category: '',
@@ -195,12 +196,12 @@
     ruleFormRef.value.validate(async(valid, fields) => {
     if (valid) {   
       state.ruleForm.content = editor.value;
-      state.ruleForm.id = id ? parseInt(id) : '';
+      state.ruleForm.id = parseInt(id);
       let url = id ? '/updateArticle':'/addArticle';
       const res = await postInfo(url,state.ruleForm);
       if(res.data.code === 200){
         ElMessage({type:'success',message:res.data.msg});
-        router.push({path:'/article'});
+        router.push({path:'/home/article'});
       }
     
     } else {

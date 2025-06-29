@@ -1,5 +1,5 @@
 <template>
-   <div class="settings">
+   <div class="settings" v-loading="loading">
     <el-form
     :model="state.ruleForm"
     :rules="state.rules"
@@ -62,9 +62,9 @@
    </div>
  </template>
    
-   <script setup>
+   <script setup lang="ts">
  
-   import { reactive, ref,onMounted, nextTick } from 'vue'  
+   import { reactive, ref,onMounted } from 'vue'  
    import {postInfo,getInfo} from '@/utils';
    import axios from 'axios';
    import {ElMessage} from 'element-plus';
@@ -73,6 +73,7 @@
    const ruleFormRef = ref(null);
    const editor = ref('');
    const token = localStorage.getItem("token") || '';
+   const loading = ref(false);
    const state = reactive({
      ruleForm:{
        name: '',
@@ -124,7 +125,7 @@
     })
   );
   const imageUrls = res.map((item) => item.data.data);
-  callback(imageUrls);
+    callback(imageUrls);
   }
  
    const handleAvatarSuccess = (response,uploadFile) => {
@@ -173,7 +174,9 @@
  
 
  const getSettingsDetail = async() => {
+   loading.value = true;
    const res = await getInfo('/getSettingsDetail');
+   loading.value = false;
    state.ruleForm.name = res.data.data.name;
    state.ruleForm.author = res.data.data.author;
    state.ruleForm.avatar = res.data.data.avatar;

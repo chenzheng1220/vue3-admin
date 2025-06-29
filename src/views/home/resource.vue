@@ -24,7 +24,7 @@
         </el-select>
      
      </div>
-     <el-table :data="tableData" border stripe style="width: 100%">
+     <el-table :data="tableData" border  style="width: 100%" v-loading="loading">
       <el-table-column min-width="180px" prop="type" label="资源类型" />
       <el-table-column min-width="180px" prop="name" label="资源名称" />
       <el-table-column min-width="180px" prop="customOrder" label="自定义排序" />
@@ -77,7 +77,7 @@
     </div>
   </template>
   
-  <script setup>
+  <script setup lang="ts">
   import {ref,reactive,onMounted} from 'vue';
   import {postInfo} from '@/utils';
   import {ElMessage} from 'element-plus';
@@ -92,6 +92,7 @@
     selectType:''
   })
   const total = ref(0);
+  const loading = ref(false);
   const options = ["学习文档","在线工具","资源下载","技术博主"];
   const changeType = (val) => {
     state.selectType = val || '';
@@ -123,7 +124,9 @@
   }
  
   const getResourceList = async(data) => {
+    loading.value = true;
    const res = await postInfo('/getResourceList',data);
+   loading.value = false;
    tableData.value = res.data.list;
    total.value = res.data.totalNum;
   }
@@ -156,6 +159,10 @@
         margin:50px auto;
        }
      }
+     .el-pagination.is-background .btn-next, .el-pagination.is-background .btn-prev, .el-pagination.is-background .el-pager li {
+      background-color: #ffffff;
+      margin: 0 4px;
+    }
      @media screen and (max-width:768px){
       .resource{
         width:100%;

@@ -1,5 +1,5 @@
 <template>
-  <div class="chart">
+  <div class="dashboard" v-loading="loading">
     <div class="data">
       <div class="item">
         <p>发布文章</p>
@@ -42,7 +42,7 @@
       <h2>博客访问详情</h2>
       <el-button type="primary" @click="exportToExcel">导出execl</el-button>
     </div>
-    <el-table :data="tableData" stripe border table-layout="auto" style="width: 100%">
+    <el-table :data="tableData"  border table-layout="auto"  style="width: 100%">
       <el-table-column min-width='120px' fixed prop="ip" label="访客IP"  />
       <el-table-column min-width='120px' prop="city" label="所在城市"  />
       <el-table-column min-width='120px' prop="platform" label="操作系统平台" />
@@ -75,8 +75,8 @@
 
 </template>
 
-<script setup>
-   import { ref,reactive,onMounted,nextTick} from 'vue';
+<script setup lang="ts">
+   import { ref,reactive,onMounted,onUnmounted,nextTick} from 'vue';
    import * as echarts from 'echarts';
    import {postInfo,getInfo} from '@/utils';
    import { useTransition } from '@vueuse/core';
@@ -90,6 +90,7 @@
    const trackList = ref([]);
    const deviceList = ref([]);
    const isShow = ref(false);
+   const loading = ref(false);
    const state = reactive({
       pageNumber:1,
       pageSize:12
@@ -119,6 +120,7 @@
       duration: 1500,
     })
     const handleView = async(index,row) => {
+     
       const res = await postInfo('/getTrack',{ip:row.ip});
       trackList.value = res.data.list;
       isShow.value = true ;
@@ -168,7 +170,9 @@
    }
 
    const getDeviceStatistics = async() => {
+    loading.value = true;
     const res = await getInfo('/getDeviceStatistics');
+    loading.value = false;
     deviceList.value = res.data.list;
   }
 
@@ -371,13 +375,21 @@
       myChartDevice.resize();
     })
   })
+  onUnmounted(() => {
+    window.removeEventListener('resize',() => {
+      myChartLine.resize();
+      myChartPie.resize();
+      myChartBar.resize();
+      myChartDevice.resize();
+    })
+  })
 
  
 
 </script>
 
 <style lang="scss">
-  .chart{
+  .dashboard{
     width:100%;
     .data{
       width:100%;
@@ -464,6 +476,11 @@
       margin:50px auto;
     }
   }
+  .el-pagination.is-background .btn-next, .el-pagination.is-background .btn-prev, .el-pagination.is-background .el-pager li {
+      background-color: #ffffff;
+      margin: 0 4px;
+    }
+ 
   @media screen and (max-width:768px){
     .chart{
       width:100%;
