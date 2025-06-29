@@ -8,16 +8,14 @@
     "build": "vite build",
     "preview": "vite preview",
     "test:unit": "vitest",
-<<<<<<< HEAD
-    "clean":"rimraf node_modules"
-=======
+    "clean":"rimraf node_modules",
     "lint": "npm run eslint & npm run stylelint",
     "lint:fix": "npm run eslint:fix & npm run stylelint:fix",
     "eslint": "eslint .",
     "eslint:fix": "eslint . --fix",
     "stylelint": "stylelint **/**.{vue,css,sass,scss,less,styl,postcss}",
     "stylelint:fix": "stylelint **/**.{vue,css,sass,scss,less,styl,postcss} --fix"
->>>>>>> d443130151851b47aa13d046f83d3825bd0e774b
+
   },
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",

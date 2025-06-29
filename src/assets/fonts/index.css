@@ -1,4 +1,6 @@
 @font-face {
-    font-family: kt;
-    src: url('./simkai.ttf') format('truetype');
+    font-family: 'kt';
+    src:url('./SIMKAI.woff2') format('woff2'),
+        url('./SIMKAI.TTF') format('truetype');
+    font-display: swap;
 }
