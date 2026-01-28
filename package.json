@@ -8,14 +8,13 @@
     "build": "vite build",
     "preview": "vite preview",
     "test:unit": "vitest",
-    "clean":"rimraf node_modules",
+    "clean": "rimraf node_modules",
     "lint": "npm run eslint & npm run stylelint",
     "lint:fix": "npm run eslint:fix & npm run stylelint:fix",
     "eslint": "eslint .",
     "eslint:fix": "eslint . --fix",
     "stylelint": "stylelint **/**.{vue,css,sass,scss,less,styl,postcss}",
     "stylelint:fix": "stylelint **/**.{vue,css,sass,scss,less,styl,postcss} --fix"
-
   },
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
@@ -45,7 +44,7 @@
     "stylelint": "^16.18.0",
     "stylelint-config-recommended-vue": "^1.6.0",
     "stylelint-config-standard": "^38.0.0",
-    "terser": "^5.36.0",
+    "terser": "^5.46.0",
     "typescript": "^5.8.3",
     "unplugin-auto-import": "^0.18.6",
     "unplugin-vue-components": "^0.27.5",

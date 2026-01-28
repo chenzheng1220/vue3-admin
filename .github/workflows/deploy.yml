@@ -1,0 +1,63 @@
+name: Deploy to Nginx
+# 工作流名称（在 Actions 页面显示的名字）
+
+on:
+  push:
+    branches: [main]
+# 触发条件：当向 main 分支 push 时触发该工作流
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # 指定运行器：使用 GitHub 提供的 ubuntu-latest 虚拟环境来运行 job
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        # 步骤：检出仓库代码到 runner 的工作目录
+        # 作用：后续步骤（如安装依赖、构建、打包）需要访问源码，必须先 checkout
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 23
+        # 步骤：在 runner 上安装/切换到指定版本的 Node.js（这里是 Node 23）
+        # 作用：确保后续的 npm 命令在期望的 Node 版本环境下运行
+
+      - name: Install dependencies
+        run: npm ci
+        # 步骤：安装项目依赖
+        # 作用：使用 `npm ci` 根据 package-lock.json / npm-shrinkwrap.json 精确安装依赖（更适合 CI 环境，速度更快并保持确定性）
+
+      - name: Build project
+        run: npm run build
+        # 步骤：运行项目的构建命令（由 package.json 中的 build 脚本定义）
+        # 作用：把源码编译/打包生成可部署的静态产物，通常输出到 dist/ 或 build/ 目录
+
+      - name: Rsync dist to remote (deploy)
+        uses: burnett01/rsync-deployments@7.0.1
+        with:
+          switches: -avz --checksum
+          # rsync 参数：
+          # -a：归档模式（递归复制并保留权限、时间戳等）
+          # -v：输出详细信息（verbose）
+          # -z：传输时压缩数据
+          # --checksum：使用文件校验和判断是否需要更新（而不是仅比较时间戳/大小）
+          path: dist/
+          # 本地要同步的路径（构建产物目录），此处为 dist/，相对仓库根目录
+          remote_path: /www/server/nginx/html/vue3-admin
+          # 远端目标路径（在远程主机上的目录），这里是 Nginx 默认的站点根目录之一
+          remote_host: ${{ secrets.SERVER_IP }}
+          # 远程主机地址（从 GitHub Secrets 获取），应配置为服务器 IP 或域名
+          remote_user: ${{ secrets.SSH_USERNAME }}
+          # 用于 SSH 登录的远程用户名（从 Secrets 获取）
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          # 用于 SSH 认证的私钥内容（从 Secrets 获取），Action 会用此私钥连接目标服务器
+          remote_port: 22
+          # SSH 端口（默认 22），如果远端使用非标准端口，可改为相应端口
+        # 总体作用：把构建好的 dist/ 目录通过 rsync 安全地同步到远程服务器上的 Nginx 目录，完成部署
+
+# 注意/提示：
+# - 请确保在仓库的 Settings -> Secrets 中添加 SERVER_IP、SSH_USERNAME、SSH_PRIVATE_KEY 等秘密值。
+# - SSH_PRIVATE_KEY 应对应远程服务器上所允许的公钥（位于该用户的 ~/.ssh/authorized_keys）。
+# - 根据需要可添加额外步骤（比如在远端执行重载 nginx、清理旧文件、备份等）。
