@@ -158,7 +158,7 @@
        const res = await postInfo('updateSettings',state.ruleForm);
        if(res.data.code === 200){
          ElMessage({type:'success',message:res.data.msg});
-         await getSettingsDetail();
+         await getSettingsDetail(); 
        }
      
      } else {
