@@ -13,12 +13,12 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         # 步骤：检出仓库代码到 runner 的工作目录
         # 作用：后续步骤（如安装依赖、构建、打包）需要访问源码，必须先 checkout
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 23
         # 步骤：在 runner 上安装/切换到指定版本的 Node.js（这里是 Node 23）
