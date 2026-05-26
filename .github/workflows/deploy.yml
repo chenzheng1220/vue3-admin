@@ -57,7 +57,7 @@ jobs:
           # SSH 端口（默认 22），如果远端使用非标准端口，可改为相应端口
         # 总体作用：把构建好的 dist/ 目录通过 rsync 安全地同步到远程服务器上的 Nginx 目录，完成部署
 
-# 注意/提示：
-# - 请确保在仓库的 Settings -> Secrets 中添加 SERVER_IP、SSH_USERNAME、SSH_PRIVATE_KEY 等秘密值。
-# - SSH_PRIVATE_KEY 应对应远程服务器上所允许的公钥（位于该用户的 ~/.ssh/authorized_keys）。
-# - 根据需要可添加额外步骤（比如在远端执行重载 nginx、清理旧文件、备份等）。
+  # 注意/提示：
+  # - 请确保在仓库的 Settings -> Secrets 中添加 SERVER_IP、SSH_USERNAME、SSH_PRIVATE_KEY 等秘密值。
+  # - SSH_PRIVATE_KEY 应对应远程服务器上所允许的公钥（位于该用户的 ~/.ssh/authorized_keys）。
+  # - 根据需要可添加额外步骤（比如在远端执行重载 nginx、清理旧文件、备份等）。

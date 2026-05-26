@@ -28,7 +28,7 @@
              :on-error="handleAvatarError"
              :before-upload="beforeAvatarUpload"
              >
-             <img v-if="state.ruleForm.avatar" :src="state.ruleForm.avatar" class="avatar" />
+             <img v-if="state.ruleForm.avatar" :src="`https://lejibiji.cn${state.ruleForm.avatar}`" class="avatar" />
              <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
          </el-upload>
      </el-form-item>
@@ -129,7 +129,7 @@
   }
  
    const handleAvatarSuccess = (response,uploadFile) => {
-     state.ruleForm.avatar = response.data;
+     state.ruleForm.avatar = response.path;
      ElMessage({type:'success',message:response.msg});
      
    }
