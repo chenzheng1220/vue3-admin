@@ -32,7 +32,7 @@
             :on-error="handleAvatarError"
             :before-upload="beforeAvatarUpload"
             >
-            <img v-if="state.ruleForm.articleCover" :src="state.ruleForm.articleCover" class="avatar" alt="articleCover" />
+            <img v-if="state.ruleForm.articleCover" :src="`https://lejibiji.cn${state.ruleForm.articleCover}`" class="avatar" alt="articleCover" />
             <el-icon v-else class="avatar-uploader-icon"><Plus /></el-icon>
         </el-upload>
     </el-form-item>
@@ -165,12 +165,12 @@
         });
     })
   );
-  const imageUrls = res.map((item) => item.data.data);
+  const imageUrls = res.map((item) => item.data.url);
   callback(imageUrls);
   }
 
   const handleAvatarSuccess = (response,uploadFile) => {
-    state.ruleForm.articleCover = response.data;
+    state.ruleForm.articleCover = response.path;
     ElMessage({type:'success',message:response.msg});
     
   }

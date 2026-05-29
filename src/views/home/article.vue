@@ -29,7 +29,7 @@
      <el-table-column min-width='180px' label="缩略图" >
       <template #default="scope">
         <div style="display: flex; align-items: center;justify-content: center;">
-            <img width="100px" height="100px" style="object-fit: cover;object-position: center top;" :src="scope.row.articleCover"/>
+            <img width="100px" height="100px" style="object-fit: cover;object-position: center top;" :src="`https://lejibiji.cn${scope.row.articleCover}`"/>
         </div>
       </template>
      </el-table-column>
